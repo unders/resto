@@ -1,0 +1,8 @@
+pkg/*
+*.gem
+.bundle
+.rvmrc
+coverage
+tmp
+.DS_Store
+example/key_setup.rb

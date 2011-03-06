@@ -1,0 +1,4 @@
+TODO
+- Change so that the .message is evaluated at runtime, so that the language translation can be changed at any time.
+- Add a .key_name that is evaluated at runtime, so that the attribute name can be translated at any time.
+- Add a default directory for Resto to look for translations yml files (en.yml, sv.yml).
