@@ -6,3 +6,4 @@ coverage
 tmp
 .DS_Store
 example/key_setup.rb
+example/fixtures/

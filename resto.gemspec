@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "resto"
 
   s.add_runtime_dependency "yajl-ruby", "0.7.8"
+  s.add_runtime_dependency "nokogiri", ">=1.4.4"
   # s.add_dependency "activesupport", "3.0.0" ???
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "rspec",   ">= 2.0.1"
@@ -26,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "reek"
   s.add_development_dependency "metrical"
   s.add_development_dependency "simplecov"
+  s.add_development_dependency "ephemeral_response"
 
   # CLI testing
   # http://github.com/radar/guides/blob/master/gem-development.md

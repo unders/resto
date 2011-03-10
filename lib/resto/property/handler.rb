@@ -21,6 +21,17 @@ module Resto
         get(key, 'attribute_key')
       end
 
+      def remote_attributes(attributes)
+        remote_attributes = {}
+
+        attributes.each do |key, value|
+          remote_key = get(key, 'remote_key') || key
+          remote_attributes[remote_key] = value
+        end
+
+        remote_attributes
+      end
+
       def cast(key, value, errors)
         get(key).cast(value, errors)
       end

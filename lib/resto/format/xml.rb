@@ -17,7 +17,7 @@ module Resto
 
       end
 
-      def decode(json)
+      def decode(xml)
 
       end
     end

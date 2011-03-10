@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     resto (0.0.1)
+      nokogiri (>= 1.4.4)
       yajl-ruby (= 0.7.8)
 
 GEM
@@ -25,6 +26,7 @@ GEM
     colored (1.2)
     crack (0.1.8)
     diff-lcs (1.1.2)
+    ephemeral_response (0.4.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     fattr (2.2.0)
@@ -57,6 +59,7 @@ GEM
     metrical (0.0.4)
       activesupport
       metric_fu (~> 2.0.1)
+    nokogiri (1.4.4)
     rails_best_practices (0.7.0)
       activesupport
       colored (~> 1.2)
@@ -104,6 +107,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (>= 1.0.0)
   code-cleaner (= 0.8.2)
+  ephemeral_response
   metrical
   reek
   resto!

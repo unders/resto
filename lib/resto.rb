@@ -107,12 +107,14 @@ module Resto
 
     def post(attributes)
       attributes.delete(resource_id)
-      response(request.body(attributes).post).get
+      remote_attributes = property_handler.remote_attributes(attributes)
+      response(request.body(remote_attributes).post).get
     end
 
     def put(attributes)
       id = attributes.delete(resource_id)
-      response(request.append_path(id).body(attributes).put).get
+      remote_attributes = property_handler.remote_attributes(attributes)
+      response(request.append_path(id).body(remote_attributes).put).get
     end
 
     def delete(id)
