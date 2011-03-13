@@ -45,7 +45,11 @@ module Resto
       def basic_auth(options)
         options = BasicAuth.new(options)
 
-        basic_encode = 'Basic ' + ["#{options.fetch(:username)}:#{options.fetch(:password)}"].pack('m').delete("\r\n")
+        username = options.fetch(:username)
+        password = options.fetch(:password)
+        base64_encode = ["#{username}:#{password}"].pack('m').delete("\r\n")
+        basic_encode = 'Basic ' + base64_encode
+
         tap { composed_headers.store('authorization', basic_encode) }
       end
     end
