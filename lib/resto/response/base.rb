@@ -16,8 +16,18 @@ module Resto
         self
       end
 
-      def format(symbol)
+      def format(symbol, options = {})
+        xpath = options[:xpath]
+        xpath(xpath) if xpath
         formatter(Resto::Format.get(@symbol = symbol))
+      end
+
+      def xpath(xpath)
+        tap { @xpath = xpath }
+      end
+
+      def read_xpath
+        @xpath || "//#{@klass.to_s.downcase}"
       end
 
       def formatter(formatter)
@@ -33,7 +43,7 @@ module Resto
       end
 
       def read_body
-        body ? current_formatter.decode(body) : nil
+        body ? current_formatter.decode(body, :xpath => read_xpath) : nil
       end
 
       def body
@@ -57,7 +67,9 @@ module Resto
       def all
         return self unless @translator
 
-        (read_body || []).map do |hash|
+        body = read_body.is_a?(Hash) ? [read_body] : read_body
+
+        (body || []).map do |hash|
           @translator.call(@klass, hash).tap do |instance|
             instance.response = self
           end

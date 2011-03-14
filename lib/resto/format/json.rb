@@ -20,7 +20,7 @@ module Resto
         Yajl::Encoder.encode(hash)
       end
 
-      def decode(json)
+      def decode(json, options=nil)
         raise ArgumentError unless json.is_a?(String)
 
         Yajl::Parser.parse(json)
