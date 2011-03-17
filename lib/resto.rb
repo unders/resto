@@ -83,7 +83,7 @@ module Resto
           request.params(params).get
         end
 
-      response(res).all
+      response(res).to_collection
     end
 
     def head
@@ -91,7 +91,7 @@ module Resto
     end
 
     def get(id)
-      response(request.append_path(id).get).get
+      response(request.append_path(id).get).to_object
     end
 
     def fetch(params = {})
@@ -102,23 +102,23 @@ module Resto
           request.params(params).get
         end
 
-      response(res).get
+      response(res).to_object
     end
 
     def post(attributes)
       attributes.delete(resource_id)
       remote_attributes = property_handler.remote_attributes(attributes)
-      response(request.body(remote_attributes).post).get
+      response(request.body(remote_attributes).post).to_object
     end
 
     def put(attributes)
       id = attributes.delete(resource_id)
       remote_attributes = property_handler.remote_attributes(attributes)
-      response(request.append_path(id).body(remote_attributes).put).get
+      response(request.append_path(id).body(remote_attributes).put).to_object
     end
 
     def delete(id)
-      response(request.append_path(id).delete).get
+      response(request.append_path(id).delete).to_object
     end
 
     def request
