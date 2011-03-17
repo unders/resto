@@ -166,8 +166,11 @@ module Resto
   end
 
   def valid?
-    valid_response = response ? (/\A20\d{1}\z/ =~ response.code) == 0 : true
-    @attributes.valid? and valid_response
+    @attributes.valid? and valid_response?
+  end
+
+  def valid_response?
+    response ? response.valid? : true
   end
 
   def add_error(key, value)

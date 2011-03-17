@@ -64,6 +64,10 @@ module Resto
         end
       end
 
+      def valid?
+        (/\A20\d{1}\z/ =~ code.to_s) == 0
+      end
+
       def all
         return self unless @translator
 

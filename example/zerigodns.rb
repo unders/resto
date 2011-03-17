@@ -18,35 +18,73 @@ end
 
 # Zones are called Domains in our web interface.
 class Zone < Zerigo
+
+  resource_identifier :id
   property :id, Integer do
     validate_presence
   end
-  property :nx_ttl, String, :remote_name => 'nx-ttl'
-  property :default_ttl, String, :remote_name => 'default-ttl'
+  property :default_ttl, Integer, :remote_name => 'default-ttl'
   property :domain, String
+  property :ns1, String
+  property :ns_type, String, :remote_name => 'ns-type'
+  property :nx_ttl, Integer, :remote_name => 'nx-ttl'
+  property :slave_nameservers, String, :remote_name => 'slave-nameservers'
   property :state, String
+
+  # Since the remote api doesn't return the attributes (the request body is
+  # empty), we have to copy the attributes back into the instance.
+  def self.put(attributes)
+    new_attributes = attributes.merge({})
+    zone = super
+
+    if zone.valid_response?
+      zone.body(new_attributes)
+    else
+      zone
+    end
+  end
+
   resto_request do
     path 'api/1.1/zones'
     translator [:zone]
   end
 
   resto_response do
-    format :xml, :xpath => '//zone'
+    format :xml#, :xpath => '//zone'
     translator :default
   end
 end
-
 # Nokogiri, libxml-ruby
 # http://www.engineyard.com/blog/2010/getting-started-with-nokogiri/
 # http://nokogiri.org/
 # http://www.w3.org/TR/xpath/
 # http://www.w3schools.com/xpath/xpath_syntax.asp
+puts  "Zone.all"
 zones = Zone.all(:per_page => 3, :page => 1)
 pp zones.first.id
 pp zones.first.attributes
+
+puts  "Zone.get(1871829974)"
 zone = Zone.get(1871829974)
 pp zone.attributes
 
+puts "zone.body(default_ttl => 650).put"
+zone = zone.body(:default_ttl => 650).put
+pp zone.attributes
+puts "#valid: #{zone.valid?}"
+puts zone.errors
+
+attributes = {
+  :default_ttl => 600,
+  :domain => "e-very-long-example.com",
+  :ns_type => 'pri_sec',
+  :nx_ttl => 900,
+}
+
+zone = Zone.post(attributes)
+pp zone.attributes
+puts "#valid: #{zone.valid?}"
+puts zone.errors
 
 
  xml =<<-XML
