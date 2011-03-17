@@ -31,7 +31,7 @@ class Zone < Zerigo
   property :slave_nameservers, String, :remote_name => 'slave-nameservers'
   property :state, String
 
-  # Since the remote api doesn't return the attributes (the request body is
+  # Since the remote api doesn't return the attributes (the response body is
   # empty), we have to copy the attributes back into the instance.
   def self.put(attributes)
     new_attributes = attributes.merge({})
