@@ -74,6 +74,9 @@ pp zone.attributes
 puts "#valid: #{zone.valid?}"
 puts zone.errors
 
+zone.delete
+puts "zone : #{zone.valid_response?}"
+
 attributes = {
   :default_ttl => 600,
   :domain => "e-very-long-example.com",

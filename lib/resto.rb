@@ -166,11 +166,15 @@ module Resto
   end
 
   def valid?
-    @attributes.valid? and valid_response?
+    @attributes.valid? and valid_response?(false)
   end
 
-  def valid_response?
-    response ? response.valid? : true
+  def valid_response?(must_have_a_response_variable=true)
+    if must_have_a_response_variable
+      response ? response.valid? : false
+    else
+      response ? response.valid? : true
+    end
   end
 
   def add_error(key, value)
