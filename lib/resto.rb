@@ -47,6 +47,45 @@ module Resto
       @resource_identifier = id
     end
 
+    def has_many(name, options)
+      class_name = options.fetch(:class_name)
+
+      params = options.fetch(:params, {})
+      params = params.map { |key, value| ":#{key} => #{value}" }.join(', ')
+
+      relation = options.fetch(:relation, {})
+      relation = relation.map { |key, value| ":#{key} => #{value}" }.join(', ')
+
+      method_definition = %Q{
+        def #{name}(params = {})
+          params ||= {}
+          raise ArgumentError unless params.is_a?(Hash)
+
+          @#{name} ||= {}
+
+          @#{name}[params] ||= #{class_name.capitalize}.
+            all({#{params}}.update(params), {#{relation}})
+        end
+      }
+
+      class_eval(method_definition, __FILE__, __LINE__)
+    end
+
+    def belongs_to(name)
+
+      method_definition = %Q{
+        def #{name}(reload = false)
+          if reload
+            @#{name} = #{name.capitalize}.get(#{name}_id)
+          else
+            @#{name} ||= #{name.capitalize}.get(#{name}_id)
+          end
+        end
+      }
+
+      class_eval(method_definition, __FILE__, __LINE__)
+    end
+
     def property(name, property, options={}, &block)
       property = Resto::Property.const_get(property.to_s).new(name, options)
       property.instance_exec(&block) if block_given?
