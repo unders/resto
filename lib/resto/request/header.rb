@@ -20,7 +20,8 @@ module Resto
       end
 
       def formatter(formatter, options=nil)
-        @add_extension = FormatExtension.new(options).fetch(:extension) { false }
+        @add_extension =
+          FormatExtension.new(options).fetch(:extension) { false }
         @formatter = formatter
         accept(formatter.accept)
         content_type(formatter.content_type)
