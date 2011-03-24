@@ -114,50 +114,69 @@ module Resto
     end
 
 
-    def all(params = {})
+    def all(params = {}, request_path_options = {}, &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
       res =
         if params.keys.empty?
-          request.get
+          req.get
         else
-          request.params(params).get
+          req.params(params).get
         end
 
       response(res).to_collection
     end
 
-    def head
-      response(request.head)
+    def head(request_path_options = {})
+      req = @request.construct_path(request_path_options)
+      response(req.head)
     end
 
-    def get(id)
-      response(request.append_path(id).get).to_object
+    def get(id, request_path_options = {}, &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
+      response(req.append_path(id).get).to_object
     end
 
-    def fetch(params = {})
+    def fetch(params = {}, request_path_options = {}, &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
       res =
         if params.keys.empty?
-          request.get
+          req.get
         else
-          request.params(params).get
+          req.params(params).get
         end
 
       response(res).to_object
     end
 
-    def post(attributes)
+    def post(attributes, request_path_options = {}, &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
       attributes.delete(resource_id)
       remote_attributes = property_handler.remote_attributes(attributes)
-      response(request.body(remote_attributes).post).to_object
+      response(req.body(remote_attributes).post).to_object
     end
 
-    def put(attributes)
+    def put(attributes, request_path_options = {},  &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
       id = attributes.delete(resource_id)
       remote_attributes = property_handler.remote_attributes(attributes)
-      response(request.append_path(id).body(remote_attributes).put).to_object
+      response(req.append_path(id).body(remote_attributes).put).to_object
     end
 
-    def delete(id)
-      response(request.append_path(id).delete).to_object
+    def delete(id, request_path_options = {}, &block)
+      req = @request.construct_path(request_path_options)
+      block.call(req) if block_given?
+
+      response(req.append_path(id).delete).to_object
     end
 
     def request
@@ -190,18 +209,26 @@ module Resto
 
   def get
     id = attributes.fetch(self.class.resource_id)
-    self.class.get(id)
+    self.class.get(id, request_path_options) { add_to_request }
   end
 
   alias reload get
 
   def put
-    self.class.put(attributes)
+    self.class.put(attributes, request_path_options) { add_to_request }
   end
 
   def delete
     id = attributes.fetch(self.class.resource_id)
-    self.class.delete(id)
+    self.class.delete(id, request_path_options) { add_to_request }
+  end
+
+  def add_to_request
+    lambda { |request| request }
+  end
+
+  def request_path_options
+    {}
   end
 
   def valid?

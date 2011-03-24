@@ -6,6 +6,7 @@ require 'resto/request/header'
 require 'resto/request/option'
 require 'resto/request/factory'
 require 'resto/translator/request_factory'
+require 'resto/extra/copy'
 
 module Resto
   module Request
@@ -22,6 +23,16 @@ module Resto
         @request = @request_klass.new(self)
       end
 
+      def construct_path(options)
+        new_path = @path.clone
+
+        @path_substitute_keys.each do |substitute|
+          new_path.gsub!(/:#{substitute}/, options[substitute].to_s)
+        end
+
+        Extra::Copy.request_base(self).path(new_path)
+      end
+
       def url(url)
         tap { parse_url(url) }
       end
@@ -35,7 +46,10 @@ module Resto
       end
 
       def path(path)
-        tap { @path = path }
+        @path = path
+        keys = path.scan(/\/(:\w+)/).flatten
+        @path_substitute_keys = keys.map {|key| key.gsub(/:/, "").to_sym }
+        self
       end
 
       def append_path(append_path)
