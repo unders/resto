@@ -50,7 +50,7 @@ module Resto
     end
 
     def to_hash
-      @attributes
+      @attributes.merge({})
     end
   end
 end
