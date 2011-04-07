@@ -34,7 +34,7 @@ module Resto
 
     def present?(key)
       @attributes.fetch(key, false) ? true : false
-   end
+    end
 
     def valid?
       @property_handler.validate(@resource)
