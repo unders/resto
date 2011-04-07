@@ -12,7 +12,7 @@ Bundler.require :default
 
 RSpec.configure do |c|
   c.mock_with :rspec
-  c.include WebMock
+  c.include WebMock::API
   c.fail_fast = true
 end
 
