@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   # s.add_dependency "activesupport", "3.0.0" ???
   s.add_development_dependency "bundler", ">= 1.0.11"
   s.add_development_dependency "rspec",   ">= 2.5.0"
+  s.add_development_dependency "fuubar",   ">= 0.0.4"
   s.add_development_dependency "webmock", ">= 1.6.2"
   s.add_development_dependency "code-cleaner", ">= 0.8.2"
   s.add_development_dependency "reek"

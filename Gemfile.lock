@@ -13,6 +13,7 @@ GEM
     activesupport (3.0.4)
     addressable (2.2.4)
     arrayfields (4.7.4)
+    chalofa_ruby-progressbar (0.0.9.1)
     chronic (0.2.3)
       hoe (>= 1.2.1)
     churn (0.0.13)
@@ -36,6 +37,10 @@ GEM
     flog (2.5.0)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    fuubar (0.0.4)
+      chalofa_ruby-progressbar (~> 0.0.9)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.1.4)
     haml (3.0.25)
     hirb (0.3.6)
     hoe (2.9.1)
@@ -83,6 +88,7 @@ GEM
     rspec-core (2.5.1)
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
+    rspec-instafail (0.1.7)
     rspec-mocks (2.5.0)
     ruby-progressbar (0.0.9)
     ruby2ruby (1.2.5)
@@ -106,6 +112,7 @@ DEPENDENCIES
   bundler (>= 1.0.11)
   code-cleaner (>= 0.8.2)
   ephemeral_response
+  fuubar (>= 0.0.4)
   metrical
   reek
   resto!
