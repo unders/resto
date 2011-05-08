@@ -1,7 +1,4 @@
-
-/bin
-require "optparse" - parsing from commandline
-
+Only Ruby 1.9.2 (soon also 1.8.7)
 
 # Build and install
 $ gem build proto.gemspec
