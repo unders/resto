@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "cucumber"
   # s.add_development_dependency "aruba"
 
-  # s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec)
+  s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec)
   # s.files        = `git ls-files`.split("\n")
   #s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
