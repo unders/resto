@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec)
   # s.files        = `git ls-files`.split("\n")
-  # s.executables  = `git ls-files`.split("\n").map do |f| 
+  # s.executables  = `git ls-files`.split("\n").map do |f|
   #   f =~ /^bin\/(.*)/ ? $1 : nil
   # end.compact
   s.require_path = 'lib'
