@@ -28,7 +28,8 @@ class Product < Chargify
   property :id, Integer
   property :price_in_cents, Integer
   property :interval, Integer
-  property :created_at, String
+  property :created_at, Time
+  #property :created_at, String
   property :name, String
 
   resto_request do
@@ -42,12 +43,26 @@ class Product < Chargify
 
 end
 
+
 #puts "products ************************"
-#products = Product.all
-#puts products.size
-#puts products.first.attributes
-#product  = products.first
-##
+products = Product.all
+puts products.size
+product = products.first
+puts product.attributes
+
+# the output is when the file is executed in time_zone=ETC at
+# date 2011-05-08 (+02:00)
+puts "remote string created_at=>'2011-02-07T15:03:42-05:00'"
+puts product.created_at # 2011-02-07 21:03:42 +0100
+puts product.created_at.iso8601 # 2011-02-07T21:03:42+01:00
+puts product.created_at.localtime # 2011-02-07 21:03:42 +0100
+#puts product.created_at.utc # 2011-02-07 20:03:42 UTC
+
+require 'date'
+puts "\n ** datetime **"
+puts product.created_at.to_datetime # 2011-02-07T21:03:42+01:00
+puts product.created_at.to_datetime.iso8601 # 2011-02-07T21:03:42+01:00
+
 #puts "product.get(#{product.id}) ***************"
 #product = Product.get(product.id)
 #puts product.attributes

@@ -4,6 +4,7 @@ require 'resto/validate'
 require 'resto/property/handler'
 require 'resto/property/string'
 require 'resto/property/integer'
+require 'resto/property/time'
 
 module Resto
   module Property

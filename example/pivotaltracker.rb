@@ -28,11 +28,28 @@ pp project.attributes
 puts "\n *********** Iteration ********** \n"
 puts "Iteration.all(1617, :limit => 10)"
 iterations = Iteration.all(1617, :limit => 10)
-pp iterations.first.attributes
+iteration =  iterations.first
+pp iteration.attributes
+
+
+
+# the output is when the file is executed in time_zone=ETC at
+# date 2011-05-08 (+02:00)
+puts "remote string :start => '2011/05/02 00:00:00 UTC'"
+puts iteration.start # 2011-05-02 00:00:00 UTC
+puts iteration.start.iso8601 # 2011-05-02T00:00:00Z
+puts iteration.start.localtime # 2011-05-02 02:00:00 +0200
+# puts iteration.start.utc # 2011-05-02 00:00:00 UTC
+
+require 'date'
+puts "\n ** datetime **"
+puts iteration.start.to_datetime # 2011-05-02T02:00:00+02:00
+puts iteration.start.to_datetime.iso8601 # 2011-05-02T02:00:00+02:00
 
 puts "Iteration.current(1617)"
 iteration = Iteration.current(1617)
 pp iteration.first.attributes
+
 
 
 

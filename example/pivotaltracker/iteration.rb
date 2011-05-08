@@ -8,7 +8,7 @@ class Iteration < PivotalTracker
     validate_presence
   end
   property :number, Integer
-  property :start, String
+  property :start, Time
   property :finish, String
 
   resto_request do
