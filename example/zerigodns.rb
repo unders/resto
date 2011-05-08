@@ -33,8 +33,9 @@ class Zone < Zerigo
 
   # Since the remote api doesn't return the attributes (the response body is
   # empty), we have to copy the attributes back into the instance.
-  def self.put(attributes)
+  def self.put(attributes, request_path_options = {},  &block)
     new_attributes = attributes.merge({})
+
     zone = super
 
     if zone.valid_response?
@@ -61,11 +62,12 @@ end
 # http://www.w3schools.com/xpath/xpath_syntax.asp
 puts  "Zone.all"
 zones = Zone.all(:per_page => 3, :page => 1)
+puts "zones.size = #{zones.size}"
 pp zones.first.id
-pp zones.first.attributes
+#pp zones.first.attributes
 
-puts  "Zone.get(1871829974)"
-zone = Zone.get(1871829974)
+puts  "Zone.get(1922298335)"
+zone = Zone.get(1922298335)
 pp zone.attributes
 
 puts "zone.body(default_ttl => 650).put"
@@ -74,9 +76,11 @@ pp zone.attributes
 puts "#valid: #{zone.valid?}"
 puts zone.errors
 
-zone.delete
+
+#zone.delete
 puts "zone : #{zone.valid_response?}"
 
+__END__
 attributes = {
   :default_ttl => 600,
   :domain => "e-very-long-example.com",
