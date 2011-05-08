@@ -17,6 +17,13 @@ Install as a gem:
 
     gem install resto
 
+## Examples
+
+To run all examples, rename:
+		https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys
+
+to key_setup.rb and add your API keys instead.
+
 ## License:
 
 (The MIT License)
