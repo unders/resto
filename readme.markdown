@@ -8,8 +8,7 @@ Only Ruby 1.9.2 (soon also 1.8.7)
 
 Resto aims to simply working with web services
 
-A complete reference is available at
-[[rubydoc.info | http://rubydoc.info/gems/resto]].
+A complete reference is available at http://rubydoc.info/gems/resto
 
 
 ## Install
