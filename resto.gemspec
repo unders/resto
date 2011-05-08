@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Anders Törnqvist"]
   s.email       = ["anders@elabs.se"]
-  s.homepage    = "http://rubygems.org/gems/resto"
+  s.homepage    = "https://github.com/unders/resto"
   s.summary     = "Restful Web Service"
   s.description = "Restful Web Service"
 
@@ -38,6 +38,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec)
   # s.files        = `git ls-files`.split("\n")
-  #s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
+  # s.executables  = `git ls-files`.split("\n").map do |f| 
+  #   f =~ /^bin\/(.*)/ ? $1 : nil
+  # end.compact
   s.require_path = 'lib'
 end
