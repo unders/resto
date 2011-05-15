@@ -129,11 +129,15 @@ describe Resto do
 
     describe ".post(attributes)" do
       before do
+        # Ruby < 1.9 doesn't preserve key insert order => webmock stub of body
+        # request doesn't match
+        content = {}
+        content[:body] = body.to_json if RUBY_VERSION >= '1.9.1'
+        content[:headers] = headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')
         stub_request(:post,
           "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions.json").
-          with(:headers => headers('accept' => 'application/json, */*',
-                                   'content-type' => 'application/json'),
-               :body => body.to_json).
+          with(content).
           to_return(:status => 201, :body => response.to_json)
       end
 
@@ -150,11 +154,16 @@ describe Resto do
 
     describe ".put(attributes)" do
       before do
+        # Ruby < 1.9 doesn't preserve key insert order => webmock stub of body
+        # request doesn't match
+        content = {}
+        content[:body] = body.to_json if RUBY_VERSION >= '1.9.1'
+        content[:headers] = headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')
+
         stub_request(:put,
           "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
-           with(:headers => headers('accept' => 'application/json, */*',
-                                   'content-type' => 'application/json'),
-               :body => body.to_json).
+          with(content).
           to_return(:status => 200, :body => response.to_json)
       end
 
@@ -169,13 +178,18 @@ describe Resto do
       it                          { should be_valid }
     end
 
-    describe "#put" do
+    describe "#put(attributes)" do
       before do
+        # Ruby < 1.9 doesn't preserve key insert order => webmock stub of body
+        # request doesn't match
+        content = {}
+        content[:body] = body.to_json if RUBY_VERSION >= '1.9.1'
+        content[:headers] = headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')
+
         stub_request(:put,
           "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
-          with(:headers => headers('accept' => 'application/json, */*',
-                                   'content-type' => 'application/json'),
-               :body => body.to_json).
+          with(content).
           to_return(:status => 200, :body => response.to_json)
       end
 
