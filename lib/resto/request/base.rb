@@ -16,7 +16,8 @@ module Resto
       include Resto::Request::Uri
       include Resto::Request::Option
 
-      delegate :head, :get, :post, :put, :delete, :to => :@request
+      delegate   :head, :head!, :get, :get!, :post, :post!,
+                :put, :put!, :delete, :delete!, :to => :@request
 
       def initialize(request=Resto::Request::Factory)
         @request_klass = request
