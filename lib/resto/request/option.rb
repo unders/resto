@@ -100,8 +100,8 @@ module Resto
         tap { options.store(:open_timeout, time)}
       end
 
-      # Number of seconds to wait for one block to be read (via one read(2) call).
-      # If the HTTP object cannot read data in this many seconds,
+      # Number of seconds to wait for one block to be read (via one read(2)
+      # call). If the HTTP object cannot read data in this many seconds,
       # it raises a TimeoutError exception.
       def read_timeout(time)#
         tap { options.store(:read_timeout, time)}

@@ -40,7 +40,7 @@ describe Resto do
     end
 
     let(:body) do
-      { :subscription => attributes.merge({}).keep_if { |k, _| k != :id } }
+      { :subscription => attributes.merge({}).reject { |k, _| k == :id } }
     end
 
     let(:response) do
@@ -50,10 +50,10 @@ describe Resto do
     describe ".all" do
       before do
         stub_request(:get,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200, :body => [response].to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions.json").
+            with(:headers => headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')).
+            to_return(:status => 200, :body => [response].to_json)
       end
 
       subject { Subscription.all.first }
@@ -70,10 +70,10 @@ describe Resto do
     describe ".get(id)" do
       before do
         stub_request(:get,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')).
+          to_return(:status => 200, :body => response.to_json)
       end
 
       subject { Subscription.get(415520) }
@@ -90,10 +90,10 @@ describe Resto do
     describe "#get" do
       before do
         stub_request(:get,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                   'content-type' => 'application/json')).
+          to_return(:status => 200, :body => response.to_json)
       end
 
       subject { Subscription.new(attributes).get }
@@ -110,10 +110,10 @@ describe Resto do
     describe "#reload" do
       before do
         stub_request(:get,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')).
+           to_return(:status => 200, :body => response.to_json)
       end
 
       subject { Subscription.new(attributes).reload }
@@ -130,11 +130,11 @@ describe Resto do
     describe ".post(attributes)" do
       before do
         stub_request(:post,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'),
-                :body => body.to_json)
-          .to_return(:status => 201, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                   'content-type' => 'application/json'),
+               :body => body.to_json).
+          to_return(:status => 201, :body => response.to_json)
       end
 
       subject { Subscription.post(attributes) }
@@ -151,11 +151,11 @@ describe Resto do
     describe ".put(attributes)" do
       before do
         stub_request(:put,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'),
-                :body => body.to_json)
-          .to_return(:status => 200, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+           with(:headers => headers('accept' => 'application/json, */*',
+                                   'content-type' => 'application/json'),
+               :body => body.to_json).
+          to_return(:status => 200, :body => response.to_json)
       end
 
       subject { Subscription.put(attributes) }
@@ -172,11 +172,11 @@ describe Resto do
     describe "#put" do
       before do
         stub_request(:put,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'),
-                :body => body.to_json)
-          .to_return(:status => 200, :body => response.to_json)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                   'content-type' => 'application/json'),
+               :body => body.to_json).
+          to_return(:status => 200, :body => response.to_json)
       end
 
       subject { Subscription.new(attributes).put }
@@ -193,10 +193,10 @@ describe Resto do
     describe ".delete(id)" do
       before do
         stub_request(:delete,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                    'content-type' => 'application/json')).
+          to_return(:status => 200)
       end
 
       subject { Subscription.delete(415520) }
@@ -208,10 +208,10 @@ describe Resto do
     describe "#delete" do
       before do
         stub_request(:delete,
-          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json")
-          .with(:headers => headers('accept' => 'application/json, */*',
-                                    'content-type' => 'application/json'))
-          .to_return(:status => 200)
+          "https://EyphE_t:x@dns-parrot.chargify.com/subscriptions/415520.json").
+          with(:headers => headers('accept' => 'application/json, */*',
+                                   'content-type' => 'application/json')).
+          to_return(:status => 200)
       end
 
       subject { Subscription.new(attributes).delete }
@@ -246,8 +246,8 @@ describe Resto do
       property :id, Integer
       property :title, String
       property :body, String, :remote_name => 'a_bad_body_name' do
-        validate_presence .if { |user| user.title.to_s.size < 3 }
-                          .message 'must be present'
+        validate_presence .if { |user| user.title.to_s.size < 3 } .
+          message 'must be present'
       end
 
       resto_request do
@@ -268,9 +268,9 @@ describe Resto do
 
     describe ".get(id)" do
       let(:request) do
-        stub_request(:get, "http://api.bit.ly/v3/users/200")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
+        stub_request(:get, "http://api.bit.ly/v3/users/200").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json'))
       end
 
       subject { RestUser.get(200) }
@@ -323,10 +323,10 @@ describe Resto do
 
     describe ".all" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.all.code.should == "200" }
@@ -334,10 +334,10 @@ describe Resto do
 
     describe ".all('tag' => 'resto')" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles?tag=resto")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                  'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles?tag=resto").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.all('tag' => 'resto').code.should == "200" }
@@ -345,10 +345,10 @@ describe Resto do
 
     describe ".head" do
       before do
-        stub_request(:head, "http://api.bit.ly/v3/articles")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:head, "http://api.bit.ly/v3/articles").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.head.code.should == "200" }
@@ -356,10 +356,10 @@ describe Resto do
 
     describe ".get(200)" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles/200")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles/200").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.get(200).code.should == "200" }
@@ -367,11 +367,11 @@ describe Resto do
 
     describe ".post(:author => 'Anders')" do
       before do
-        stub_request(:post, "http://api.bit.ly/v3/articles")
-          .with(:body => { "author" => "Anders"}.to_json,
-                :headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:post, "http://api.bit.ly/v3/articles").
+          with(:body => { "author" => "Anders"}.to_json,
+               :headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.post(:author => 'Anders').code.should == "200" }
@@ -379,11 +379,11 @@ describe Resto do
 
     describe ".put(:author => 'Anders')" do
       before do
-        stub_request(:put, "http://api.bit.ly/v3/articles")
-          .with(:body => { "author"=> "Anders"}.to_json,
-                :headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:put, "http://api.bit.ly/v3/articles").
+          with(:body => { "author"=> "Anders"}.to_json,
+               :headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.put(:author => 'Anders').code.should == "200" }
@@ -391,10 +391,10 @@ describe Resto do
 
     describe ".delete(400)" do
       before do
-        stub_request(:delete, "http://api.bit.ly/v3/articles/400")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:delete, "http://api.bit.ly/v3/articles/400").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticle.delete(400).code.should == "200" }
@@ -415,10 +415,10 @@ describe Resto do
 
     describe ".all" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles.json")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles.json").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.all.code.should == "200" }
@@ -426,10 +426,10 @@ describe Resto do
 
     describe ".all('tag' => 'resto')" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles.json?tag=resto")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles.json?tag=resto").
+           with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.all('tag' => 'resto').code.should == "200" }
@@ -437,10 +437,10 @@ describe Resto do
 
     describe ".head" do
       before do
-        stub_request(:head, "http://api.bit.ly/v3/articles.json")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:head, "http://api.bit.ly/v3/articles.json").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.head.code.should == "200" }
@@ -448,10 +448,10 @@ describe Resto do
 
     describe ".get(200)" do
       before do
-        stub_request(:get, "http://api.bit.ly/v3/articles/200.json")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:get, "http://api.bit.ly/v3/articles/200.json").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.get(200).code.should == "200" }
@@ -459,11 +459,11 @@ describe Resto do
 
     describe ".post(:author => 'Anders')" do
       before do
-        stub_request(:post, "http://api.bit.ly/v3/articles.json")
-          .with(:body => { "author" => "As" }.to_json,
-                :headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:post, "http://api.bit.ly/v3/articles.json").
+          with(:body => { "author" => "As" }.to_json,
+               :headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+           to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.post(:author => 'As').code.should == "200" }
@@ -471,11 +471,11 @@ describe Resto do
 
     describe ".put(:author => 'Anders')" do
       before do
-        stub_request(:put, "http://api.bit.ly/v3/articles.json")
-          .with(:body => { "author" => "An" }.to_json,
-                :headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:put, "http://api.bit.ly/v3/articles.json").
+          with(:body => { "author" => "An" }.to_json,
+               :headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.put(:author => 'An').code.should == "200" }
@@ -483,10 +483,10 @@ describe Resto do
 
     describe ".delete(400)" do
       before do
-        stub_request(:delete, "http://api.bit.ly/v3/articles/400.json")
-          .with(:headers => headers('accept'=>'application/json, */*',
-                                    'content-type'=>'application/json'))
-          .to_return(:status => 200)
+        stub_request(:delete, "http://api.bit.ly/v3/articles/400.json").
+          with(:headers => headers('accept'=>'application/json, */*',
+                                   'content-type'=>'application/json')).
+          to_return(:status => 200)
       end
 
       it { RestArticleWithExtension.delete(400).code.should == "200" }
@@ -509,9 +509,9 @@ describe Resto do
 
     describe ".all()" do
       before do
-        stub_request(:get, "http://bit.ly/v3?format=json&longUrl=ll")
-          .with(:headers => headers("content-type" => "text/html"))
-          .to_return(:status => 200)
+        stub_request(:get, "http://bit.ly/v3?format=json&longUrl=ll").
+          with(:headers => headers("content-type" => "text/html")).
+          to_return(:status => 200)
       end
 
       it { Bitly.all.code.should == "200" }
@@ -519,9 +519,9 @@ describe Resto do
 
     describe ".all('shortUrl' => short)" do
       before do
-        stub_request(:get, "http://bit.ly/v3?format=json&shortUrl=short")
-          .with(:headers => headers("content-type" => "text/html"))
-          .to_return(:status => 200)
+        stub_request(:get, "http://bit.ly/v3?format=json&shortUrl=short").
+          with(:headers => headers("content-type" => "text/html")).
+          to_return(:status => 200)
       end
 
       it { Bitly.all('shortUrl' => 'short').code.should == "200" }

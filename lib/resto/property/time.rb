@@ -22,20 +22,21 @@ module Resto
 
         formatted_value = value.to_s.strip
         if formatted_value.gsub(/([a-z|A-Z]{1,5}\Z)/, '') =~ /[^T\d\-:\+\/\s]/
-          formatted_value = "invalid"
+          errors.store(@key, ":#{attribute_key} is not a valid time format.")
+          formatted_value = ""
         end
 
         number_of_digits = formatted_value.gsub(/\D/, '').length
-        if (1..10).include?(number_of_digits)
-          formatted_value = "invalid"
+        if (1..9).include?(number_of_digits)
+          errors.store(@key, ":#{attribute_key} is not a valid time format.")
+          formatted_value = ""
         end
 
         begin
           formatted_value.empty? ? nil : ::Time.parse(formatted_value)
-        rescue ArgumentError
-          nil.tap do
-            errors.store(@key, ":#{attribute_key} is not a valid time format.")
-          end
+        rescue ArgumentError, TypeError
+          errors.store(@key, ":#{attribute_key} is not a valid time format.")
+          nil
         end
       end
     end

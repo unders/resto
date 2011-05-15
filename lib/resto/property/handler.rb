@@ -9,10 +9,10 @@ module Resto
 
       def add(property)
         @properties_with_indifferent_access.store(property.remote_key, property)
-        @properties_with_indifferent_access
-          .store(property.attribute_key, property)
-        @properties_with_indifferent_access
-          .store(property.attribute_key_as_string, property)
+        @properties_with_indifferent_access.
+          store(property.attribute_key, property)
+        @properties_with_indifferent_access.
+          store(property.attribute_key_as_string, property)
 
         @properties.store(property.attribute_key, property)
       end

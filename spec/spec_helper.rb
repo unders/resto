@@ -15,6 +15,9 @@ RSpec.configure do |c|
   c.mock_with :rspec
   c.include WebMock::API
   c.fail_fast = true
+  c.filter_run_excluding :ruby => lambda {|version|
+    !(RUBY_VERSION.to_s =~ /^#{version.to_s}/)
+  }
 end
 
 # Helper methods

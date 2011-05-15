@@ -20,8 +20,8 @@ describe Resto::Request::Base do
 
     describe "@request" do
       it do
-        subject.instance_eval { @request }
-          .should be_instance_of(Resto::Request::Factory)
+        subject.instance_eval { @request }.
+          should be_instance_of(Resto::Request::Factory)
       end
     end
   end
@@ -39,8 +39,8 @@ describe Resto::Request::Base do
   context "#content_type('text/html').headers({'content-type' => 'text/plain',
                                                'User-agent' => 'Ruby' })" do
     before do
-      subject.content_type('text/html')
-        .headers({'content-type' => 'text/plain', 'user-agent' => 'Ruby' })
+      subject.content_type('text/html').
+        headers({'content-type' => 'text/plain', 'user-agent' => 'Ruby' })
     end
 
     its(:composed_headers) do
@@ -54,8 +54,8 @@ describe Resto::Request::Base do
             .content_type('text/html')" do
 
     before do
-      subject.basic_auth('username' => "developer", "password" => "secret")
-        .content_type('text/html')
+      subject.basic_auth('username' => "developer", "password" => "secret").
+        content_type('text/html')
     end
 
     its(:composed_headers) do
@@ -112,9 +112,9 @@ describe Resto::Request::Base do
             .params('longUrl' => 'http://betaworks.com', 'short' => 'htt')" do
 
     before do
-      subject.url('http://www.aftonbladet.se:92/customers')
-        .query('q=adam')
-        .params('longUrl' => 'http://betaworks.com', 'short' => 'htt')
+      subject.url('http://www.aftonbladet.se:92/customers').
+        query('q=adam').
+        params('longUrl' => 'http://betaworks.com', 'short' => 'htt')
     end
 
     its(:read_host)     { should == 'www.aftonbladet.se' }
@@ -130,10 +130,10 @@ describe Resto::Request::Base do
             .path('contacts')" do
 
     before do
-      subject.port(40)
-        .url('http://www.aftonbladet.se:92/customers')
-        .query('q=adam')
-        .path('contacts')
+      subject.port(40).
+        url('http://www.aftonbladet.se:92/customers').
+        query('q=adam').
+        path('contacts')
     end
 
     its(:read_host)      { should == 'www.aftonbladet.se' }
@@ -154,8 +154,8 @@ describe Resto::Request::Base do
             .append_path(1)" do
 
     before do
-      subject.url('http://www.aftonbladet.se:92/customers/?q=adam')
-        .append_path(1)
+      subject.url('http://www.aftonbladet.se:92/customers/?q=adam').
+        append_path(1)
     end
 
     its(:read_host)          { should == 'www.aftonbladet.se' }
@@ -167,8 +167,8 @@ describe Resto::Request::Base do
             .query('q=take presendent')" do
 
      before do
-       subject.url('http://www.aftonbladet.se:92/customers/?q=adam')
-        .query("q=take presendent")
+       subject.url('http://www.aftonbladet.se:92/customers/?q=adam').
+         query("q=take presendent")
      end
 
      its(:read_host)          { should == 'www.aftonbladet.se' }
@@ -181,9 +181,9 @@ describe Resto::Request::Base do
             .query('q=take presendent')" do
 
      before do
-       subject.host('www.take-presedent.se')
-        .url('http://www.aftonbladet.se:92/customers/?q=adam')
-        .query('q=take presendent')
+       subject.host('www.take-presedent.se').
+         url('http://www.aftonbladet.se:92/customers/?q=adam').
+        query('q=take presendent')
      end
 
      its(:read_host)          { should == 'www.take-presedent.se' }
@@ -207,8 +207,8 @@ describe Resto::Request::Base do
 
      context "when formatter is Resto::Format::Json" do
        before do
-         subject.format(:json)
-          .body( { :foo => 12425125, :bar => "some string" } )
+         subject.format(:json).
+           body( { :foo => 12425125, :bar => "some string" } )
         end
 
        its(:read_body) do

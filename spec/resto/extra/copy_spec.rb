@@ -5,17 +5,17 @@ require 'resto/extra/copy'
 describe Resto::Extra::Copy do
   describe ".request_base" do
     before do
-      @request_base = Resto::Request::Base.new.port(40)
-        .url('http://www.aftonbladet.se:92/customers')
-        .query('q=adam')
-        .path('contacts')
+      @request_base = Resto::Request::Base.new.port(40).
+        url('http://www.aftonbladet.se:92/customers').
+        query('q=adam').
+        path('contacts')
 
-      @new_request_base = Resto::Extra::Copy.request_base(@request_base)
-        .url('http://new.se:99/other')
-        .query('q=not-same')
-        .path('other-contacts/')
-        .headers({ "accept"=> "other", "user-agent"=> "Ruby" })
-        .append_path(2)
+      @new_request_base = Resto::Extra::Copy.request_base(@request_base).
+        url('http://new.se:99/other').
+        query('q=not-same').
+        path('other-contacts/').
+        headers({ "accept"=> "other", "user-agent"=> "Ruby" }).
+        append_path(2)
     end
 
     it { @new_request_base.object_id.should_not == @request_base.object_id }
@@ -47,8 +47,8 @@ describe Resto::Extra::Copy do
   describe ".response_base" do
     before do
       @response_base = Resto::Response::Base.new.format(:json)
-      @new_response_base = Resto::Extra::Copy.response_base(@response_base)
-        .http_response('response')
+      @new_response_base = Resto::Extra::Copy.response_base(@response_base).
+        http_response('response')
     end
 
     it { @response_base.instance_eval { @response }.should == nil }

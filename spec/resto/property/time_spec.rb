@@ -15,7 +15,7 @@ describe Resto::Property::Time do
   subject { Resto::Property::Time.new(:date_of_birth) }
 
   describe ".cast(time_string, errors)" do
-    context "local time is 2010-10-25T12:00:00 PST" do
+    context "local time is 2010-10-25T12:00:00 PST", :ruby => 1.9  do
       it "returns a time object parsed from the string" do
         at_time("2010-10-25T12:00:00 PST", '-08:00') do #UTC -8
           time = subject.cast(iso_8601_plus, errors)
@@ -74,7 +74,7 @@ describe Resto::Property::Time do
     end
 
     context ".cast('q', errors)" do
-      it("returns nil and sets errors[:date_of_birth_time]") do
+      it("returns nil and sets errors[:date_of_birth_time]", :ruby => 1.9) do
         subject.cast('q', errors).should == nil
         errors.fetch(:date_of_birth_time, false).should ==
           ':date_of_birth is not a valid time format.'
@@ -113,7 +113,7 @@ describe Resto::Property::Time do
       end
     end
 
-    context ".cast('22/02/2010 00:00:00 UTC', errors)" do
+    context ".cast('22/02/2010 00:00:00 UTC', errors)", :ruby => 1.9 do
       it("returns a time object parsed from the string") do
         time = subject.cast('22/02/2010 00:00:00 UTC', errors)
         time.utc.iso8601.should == '2010-02-22T00:00:00Z'

@@ -47,8 +47,8 @@ describe Resto::Property::Handler do
           it { article.errors.fetch(:title_presence, false).should == nil }
 
           it do
-            article.errors.fetch(:empty_title_presence, false)
-              .should == ":empty_title can’t be blank"
+            article.errors.fetch(:empty_title_presence, false).
+              should == ":empty_title can’t be blank"
           end
         end
       end

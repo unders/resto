@@ -16,13 +16,13 @@ describe Resto::Extra::HashArgs do
     end
 
     it "returns the value found by the key"  do
-      BasicAuthication.new({'username' => 'anders', :password => 'secret'})
-        .fetch(:password) { 'other' }.should == 'secret'
+      BasicAuthication.new({'username' => 'anders', :password => 'secret'}).
+        fetch(:password) { 'other' }.should == 'secret'
     end
 
     it "the key is translated to its symbol" do
-      BasicAuthication.new({'username' => 'anders', :password => 'secret'})
-        .fetch(:username) { 'other' }.should == 'anders'
+      BasicAuthication.new({'username' => 'anders', :password => 'secret'}).
+        fetch(:username) { 'other' }.should == 'anders'
     end
   end
 
@@ -38,34 +38,34 @@ describe Resto::Extra::HashArgs do
     if RUBY_VERSION < '1.9'
 
       it "raises IndexError when no value and no block" do
-        expect { FormatExt.new({}).fetch(:extension) }
-          .to raise_error(IndexError, 'key not found')
+        expect { FormatExt.new({}).fetch(:extension) }.
+          to raise_error(IndexError, 'key not found')
       end
 
     else
 
       it "raises KeyError when no value and no block" do
-        lambda { FormatExt.new({}).fetch(:extension) }
-          .should raise_error(KeyError, 'key not found: :extension')
+        lambda { FormatExt.new({}).fetch(:extension) }.
+          should raise_error(KeyError, 'key not found: :extension')
       end
 
     end
 
     it "raises" do
-      expect { FormatExt.new({:username => "anders"}) }
-        .to raise_error(ArgumentError, /The key 'username'/)
+      expect { FormatExt.new({:username => "anders"}) }.
+        to raise_error(ArgumentError, /The key 'username'/)
 
-      expect { FormatExt.new("string") }
-        .to raise_error(ArgumentError, "'string' must be a Hash")
+      expect { FormatExt.new("string") }.
+        to raise_error(ArgumentError, "'string' must be a Hash")
 
-      expect { FormatExt.new(:extension => 'value', 'extension' => 'value') }
-        .to raise_error(ArgumentError, "duplicated keys: extension, extension")
+      expect { FormatExt.new(:extension => 'value', 'extension' => 'value') }.
+        to raise_error(ArgumentError, "duplicated keys: extension, extension")
 
-      expect { FormatExt.new({:invalid_key => 'invalid' }) }
-        .to raise_error(ArgumentError, /The key 'invalid_key' is not valid/)
+      expect { FormatExt.new({:invalid_key => 'invalid' }) }.
+        to raise_error(ArgumentError, /The key 'invalid_key' is not valid/)
 
-      expect { FormatExt.new({:extension => 'value' }).fetch(:invalid_key) }
-        .to raise_error(ArgumentError, /The key 'invalid_key' is not valid/)
+      expect { FormatExt.new({:extension => 'value' }).fetch(:invalid_key) }.
+        to raise_error(ArgumentError, /The key 'invalid_key' is not valid/)
     end
   end
 end

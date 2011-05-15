@@ -50,8 +50,8 @@ describe Resto::Property do
           before { subject.validate(article, :empty_title)  }
 
           it {
-            article.errors[:empty_title_presence]
-              .should == ":empty_title can’t be blank"
+            article.errors[:empty_title_presence].
+              should == ":empty_title can’t be blank"
           }
         end
       end
