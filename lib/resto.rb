@@ -63,7 +63,7 @@ module Resto
 
           @#{name} ||= {}
 
-          @#{name}[params] ||= #{class_name.capitalize}.
+          @#{name}[params] ||= #{class_name.to_s.capitalize}.
             all({#{params}}.update(params), {#{relation}})
         end
       }
@@ -76,9 +76,9 @@ module Resto
       method_definition = %Q{
         def #{name}(reload = false)
           if reload
-            @#{name} = #{name.capitalize}.get(#{name}_id)
+            @#{name} = #{name.to_s.capitalize}.get(#{name}_id)
           else
-            @#{name} ||= #{name.capitalize}.get(#{name}_id)
+            @#{name} ||= #{name.to_s.capitalize}.get(#{name}_id)
           end
         end
       }
