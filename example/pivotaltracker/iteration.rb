@@ -8,8 +8,8 @@ class Iteration < PivotalTracker
     validate_presence
   end
   property :number, Integer
-  property :start, Time
-  property :finish, String
+  property :start, Time, :format => 'yyyy/mm/dd'
+  property :finish, Time, :format => 'yyyy/mm/dd'
 
   resto_request do
     translator [:iteration]

@@ -48,7 +48,7 @@ end
 products = Product.all
 puts products.size
 product = products.first
-puts product.attributes
+puts product.attributes.inspect
 
 # the output is when the file is executed in time_zone=ETC at
 # date 2011-05-08 (+02:00)
@@ -60,8 +60,12 @@ puts product.created_at.localtime # 2011-02-07 21:03:42 +0100
 
 require 'date'
 puts "\n ** datetime **"
-puts product.created_at.to_datetime # 2011-02-07T21:03:42+01:00
-puts product.created_at.to_datetime.iso8601 # 2011-02-07T21:03:42+01:00
+if RUBY_VERSION.to_i < 1.9
+  puts product.created_at.send(:to_datetime) # 2011-02-07T21:03:42+01:00
+else
+  puts product.created_at.to_datetime # 2011-02-07T21:03:42+01:00
+  puts product.created_at.to_datetime.iso8601 # 2011-02-07T21:03:42+01:00
+end
 
 #puts "product.get(#{product.id}) ***************"
 #product = Product.get(product.id)

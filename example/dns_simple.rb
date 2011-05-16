@@ -66,7 +66,7 @@ collection =  Domain.all
 puts collection.length
 
 domain = collection.first
-puts domain.attributes
+puts domain.attributes.inspect
 
 # the output is when the file is executed in time_zone=ETC at
 # date 2011-05-08 (+02:00)
@@ -86,8 +86,12 @@ puts domain.created_at.localtime # 2011-05-08 15:03:13 +0200
 
 require 'date'
 puts "\n ** datetime **"
-puts domain.created_at.to_datetime # 2011-05-08T15:03:13+02:00
-puts domain.created_at.to_datetime.iso8601 # 2011-05-08T15:03:13+02:00
+if RUBY_VERSION.to_i < 1.9
+  puts domain.created_at.send(:to_datetime) # 2011-05-08T15:03:13+02:00
+else
+  puts domain.created_at.to_datetime # 2011-05-08T15:03:13+02:00
+  puts domain.created_at.to_datetime.iso8601 # 2011-05-08T15:03:13+02:00
+end
 
 __END__
 

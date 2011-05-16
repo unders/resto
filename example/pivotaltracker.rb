@@ -43,15 +43,20 @@ puts iteration.start.localtime # 2011-05-02 02:00:00 +0200
 
 require 'date'
 puts "\n ** datetime **"
-puts iteration.start.to_datetime # 2011-05-02T02:00:00+02:00
-puts iteration.start.to_datetime.iso8601 # 2011-05-02T02:00:00+02:00
+
+if RUBY_VERSION.to_i < 1.9
+  puts iteration.start.send(:to_datetime) # 2011-05-02T02:00:00+02:00
+else
+  puts iteration.start.to_datetime # 2011-05-02T02:00:00+02:00
+  puts iteration.start.to_datetime.iso8601 # 2011-05-02T02:00:00+02:00
+end
 
 puts "Iteration.current(1617)"
 iteration = Iteration.current(1617)
 pp iteration.first.attributes
 
 
-
+__END__
 
 puts "\n *************** Story ******************** \n"
 
