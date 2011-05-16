@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    resto (0.0.7)
+    resto (0.0.8)
       nokogiri (>= 1.4.4)
       yajl-ruby (= 0.8.2)
 
@@ -61,7 +61,7 @@ GEM
       activesupport
       metric_fu (~> 2.1.1)
     nokogiri (1.4.4)
-    rails_best_practices (0.8.2)
+    rails_best_practices (0.9.0)
       activesupport
       colored
       erubis
