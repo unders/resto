@@ -9,7 +9,8 @@ module Resto
       extend Resto::Extra::Delegation
 
       delegate :read_host, :read_port, :options, :read_body, :composed_path,
-        :composed_headers, :scheme, :use_ssl, :current_formatter, :to => :@request
+        :composed_headers, :scheme, :use_ssl, :current_formatter,
+        :to => :@request
 
       def initialize(request)
         @request = request
@@ -133,7 +134,8 @@ module Resto
         body = result.body.to_s
         length = body.length
         if current_formatter == Resto::Format::Json and not body.empty?
-          body = Yajl::Encoder.encode(Format::Json.decode(body), :pretty => true, :indent => "  ")
+          body = Yajl::Encoder.encode(Format::Json.decode(body),
+                                      { :pretty => true, :indent => "  " })
         end
         out << "\n*** Body (#{length}) ***\n#{body}"
       end
