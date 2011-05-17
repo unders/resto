@@ -5,7 +5,7 @@
 ## Description:
 
 Resto aims to simplify working with web services.
-Documentation is available at http://rubydoc.info/gems/resto
+Documentation is available at [rubydoc](http://rubydoc.info/gems/resto)
 
 ## Compatibility
 
@@ -19,14 +19,14 @@ Install as a gem:
 
 ## Getting Started
 
-Working with the Gists API - http://developer.github.com/v3/gists/
+Working with the [Gists API](http://developer.github.com/v3/gists/)
 
 #### 1. Test the API
 
     Resto.url('https://api.github.com/users/unders/gists').format(:json).
       params(:per_page => 1).get!
 
-and the output will look like [[this | https://github.com/unders/resto/raw/master/example/1_gists_output.txt]]
+and the output will look like [this](https://github.com/unders/resto/raw/master/example/1_gists_output.txt)
 
 ## Examples
 
