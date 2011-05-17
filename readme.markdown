@@ -20,12 +20,21 @@ Install as a gem:
 
     gem install resto
 
+## Getting Started
+Gists API - http://developer.github.com/v3/gists/
+
+1. Test the API
+    Resto.url('https://api.github.com/users/unders/gists').
+      params(:per_page => 1).get!
+
 ## Examples
 
 To run all examples, rename:
 		https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys
 
 to key_setup.rb and add your API keys instead.
+
+
 
 ## License:
 
