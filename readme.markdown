@@ -26,6 +26,8 @@ Working with the Gists API - http://developer.github.com/v3/gists/
     Resto.url('https://api.github.com/users/unders/gists').format(:json).
       params(:per_page => 1).get!
 
+and the output will look like [[this | https://github.com/unders/resto/raw/master/example/1_gists_output.txt]]
+
 ## Examples
 
 To run all examples, rename:
