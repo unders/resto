@@ -1,4 +1,3 @@
-
 # Resto
 
 * http://github.com/unders/resto
@@ -12,7 +11,6 @@ Documentation is available at http://rubydoc.info/gems/resto
 
 Ruby version 1.9.2 and 1.8.7
 
-
 ## Install
 
 Install as a gem:
@@ -23,7 +21,7 @@ Install as a gem:
 
 Working with the Gists API - http://developer.github.com/v3/gists/
 
-1. Test the API
+#### Test the API
 
     Resto.url('https://api.github.com/users/unders/gists').format(:json).
       params(:per_page => 1).get!
@@ -31,7 +29,7 @@ Working with the Gists API - http://developer.github.com/v3/gists/
 ## Examples
 
 To run all examples, rename:
-		https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys
+    https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys
 
 to key_setup.rb and add your API keys instead.
 
