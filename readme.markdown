@@ -19,22 +19,20 @@ Install as a gem:
 
 ## Getting Started
 
-Working with the [Gists API](http://developer.github.com/v3/gists/)
+### Working with the [Gists API](http://developer.github.com/v3/gists/)
 
 #### 1. Test the API
 
     Resto.url('https://api.github.com/users/unders/gists').format(:json).
       params(:per_page => 1).get!
 
-and the output will look like [this](https://github.com/unders/resto/raw/master/example/1_gists_output.txt)
+and the output will look like [this](https://github.com/unders/resto/raw/master/example/1_gists_output.txt).
 
 ## Examples
 
-To run all examples, rename:
-    https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys
-
-to key_setup.rb and add your API keys instead.
-
+To run all [examples](https://github.com/unders/resto/tree/master/example), rename:
+[key_setup.rb.your_keys](https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys)
+to key_setup.rb and add your API keys.
 
 
 ## License:
