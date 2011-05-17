@@ -23,7 +23,8 @@ Working with the Gists API - http://developer.github.com/v3/gists/
 
 #### 1. Test the API
 
-    Resto.url('https://api.github.com/users/unders/gists').format(:json).params(:per_page => 1).get!
+    Resto.url('https://api.github.com/users/unders/gists').format(:json).
+      params(:per_page => 1).get!
 
 ## Examples
 
