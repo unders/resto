@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-
 require File.expand_path("../lib/resto/version", __FILE__)
 
 Gem::Specification.new do |s|
@@ -17,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "resto"
 
-  s.add_runtime_dependency "yajl-ruby", "0.8.2"
+  s.add_runtime_dependency "yajl-ruby", ">= 0.8.2"
   s.add_runtime_dependency "nokogiri", ">=1.4.4"
   # s.add_dependency "activesupport", "3.0.0" ???
   s.add_development_dependency "bundler", ">= 1.0.13"

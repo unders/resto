@@ -3,7 +3,7 @@ PATH
   specs:
     resto (0.0.9)
       nokogiri (>= 1.4.4)
-      yajl-ruby (= 0.8.2)
+      yajl-ruby (>= 0.8.2)
 
 GEM
   remote: http://rubygems.org/
