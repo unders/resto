@@ -9,6 +9,7 @@ module Resto
   module Format
     def self.get(symbol=:default)
       format = Resto::Format.const_get("#{symbol.to_s.capitalize}")
+      Resto::Format.const_get("#{symbol.to_s.capitalize}")
     end
 
     def extension;                         end
