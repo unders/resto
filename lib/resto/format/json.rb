@@ -15,8 +15,6 @@ module Resto
     class Json; end
 
     class << Json
-      include Format
-
       # The accept header when sending JSON data.
       #
       # === Example:
