@@ -1,16 +1,16 @@
 # encoding: utf-8
 
 require 'net/https'
-require 'resto/extra/delegation'
+require 'forwardable'
 
 module Resto
   module Request
     class Factory
-      extend Resto::Extra::Delegation
+      extend Forwardable
 
-      delegate :read_host, :read_port, :options, :read_body, :composed_path,
-        :composed_headers, :scheme, :use_ssl, :current_formatter,
-        :to => :@request
+      def_delegators :@request, :read_host, :read_port, :options, :read_body,
+                     :composed_path, :composed_headers, :scheme, :use_ssl,
+                     :current_formatter
 
       def initialize(request)
         @request = request

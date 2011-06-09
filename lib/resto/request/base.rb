@@ -1,23 +1,23 @@
 # encoding: utf-8
 
-require 'resto/extra/delegation'
+require 'forwardable'
+require 'resto/extra/copy'
 require 'resto/request/uri'
 require 'resto/request/header'
 require 'resto/request/option'
 require 'resto/request/factory'
 require 'resto/translator/request_factory'
-require 'resto/extra/copy'
 
 module Resto
   module Request
     class Base
-      extend  Resto::Extra::Delegation
+      extend Forwardable
       include Resto::Request::Header
       include Resto::Request::Uri
       include Resto::Request::Option
 
-      delegate   :head, :head!, :get, :get!, :post, :post!,
-                :put, :put!, :delete, :delete!, :to => :@request
+      def_delegators :@request, :head, :head!, :get, :get!, :post, :post!,
+                :put, :put!, :delete, :delete!
 
       def initialize(request=Resto::Request::Factory)
         @request_klass = request
