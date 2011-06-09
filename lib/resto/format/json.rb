@@ -10,8 +10,7 @@ module Resto
     # uses this class to create a valid JSON request.
     #
     # {Resto::Response::Base} (see method {Resto::Response::Base#read_body})
-    # uses this class to convert a JSON formatted
-    # String to a Hash.
+    # uses this class to convert a JSON formatted String to a Hash.
     class Json; end
 
     class << Json
