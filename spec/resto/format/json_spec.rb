@@ -7,9 +7,15 @@ require 'yajl'
 describe "Resto::Format.get(:json)" do
   subject { Resto::Format.get(:json) }
 
-  its(:extension)      { should == 'json' }
   its(:accept)         { should == 'application/json, */*' }
   its(:content_type)   { should == 'application/json' }
+
+  describe '.decode(json)' do
+    json = Yajl::Encoder.encode( { :foo => 12425125, :bar => "some string" })
+    expected = { 'foo' => 12425125, 'bar' => "some string" }
+
+    it { subject.decode(json).should == expected }
+  end
 
   describe ".encode(hash)" do
     before { @result = subject.encode({ :bar => "some string",
@@ -19,11 +25,5 @@ describe "Resto::Format.get(:json)" do
     it { @result.should =~ /foo\":12425125/      }
   end
 
-  describe '.decode(json)' do
-    json = Yajl::Encoder.encode( { :foo => 12425125, :bar => "some string" })
-    expected = { 'foo' => 12425125, 'bar' => "some string" }
-
-    it { subject.decode(json).should == expected }
-  end
-
+  its(:extension) { should == 'json' }
 end
