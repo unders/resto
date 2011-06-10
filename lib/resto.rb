@@ -180,7 +180,7 @@ module Resto
     end
 
     def request
-      Extra::Copy.request_base(@request)
+      Copy.request_base(@request)
     end
 
     def response(response)
@@ -188,7 +188,7 @@ module Resto
     end
 
     def base_response
-      Extra::Copy.response_base(@response)
+      Copy.response_base(@response)
     end
 
     def property_handler

@@ -31,7 +31,7 @@ module Resto
           new_path.gsub!(/:#{substitute}/, options[substitute].to_s)
         end
 
-        Extra::Copy.request_base(self).path(new_path)
+        Copy.request_base(self).path(new_path)
       end
 
       def url(url)

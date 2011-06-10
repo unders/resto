@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 require 'resto/extra/copy'
-describe Resto::Extra::Copy do
+describe Resto::Copy do
   describe ".request_base" do
     before do
       @request_base = Resto::Request::Base.new.port(40).
@@ -10,7 +10,7 @@ describe Resto::Extra::Copy do
         query('q=adam').
         path('contacts')
 
-      @new_request_base = Resto::Extra::Copy.request_base(@request_base).
+      @new_request_base = Resto::Copy.request_base(@request_base).
         url('http://new.se:99/other').
         query('q=not-same').
         path('other-contacts/').
@@ -47,7 +47,7 @@ describe Resto::Extra::Copy do
   describe ".response_base" do
     before do
       @response_base = Resto::Response::Base.new.format(:json)
-      @new_response_base = Resto::Extra::Copy.response_base(@response_base).
+      @new_response_base = Resto::Copy.response_base(@response_base).
         http_response('response')
     end
 
