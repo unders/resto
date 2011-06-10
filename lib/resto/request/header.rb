@@ -1,15 +1,6 @@
 # encoding: utf-8
 require 'resto/format'
-
-require 'resto/extra/hash_args'
-class BasicAuth < Resto::Extra::HashArgs
-  key :username
-  key :password
-end
-
-class FormatExtension < Resto::Extra::HashArgs
-  key :extension
-end
+require 'resto/extra/assert_hash'
 
 module Resto
   module Request
@@ -20,8 +11,8 @@ module Resto
       end
 
       def formatter(formatter, options=nil)
-        @add_extension =
-          FormatExtension.new(options).fetch(:extension) { false }
+        options = AssertHash.keys(options, :extension)
+        @add_extension = options.fetch(:extension) { false }
         @formatter = formatter
         accept(formatter.accept)
         content_type(formatter.content_type)
@@ -44,7 +35,7 @@ module Resto
       end
 
       def basic_auth(options)
-        options = BasicAuth.new(options)
+        options = AssertHash.keys(options, :username, :password)
 
         username = options.fetch(:username)
         password = options.fetch(:password)
