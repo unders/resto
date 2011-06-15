@@ -531,14 +531,14 @@ describe Resto do
       it { Bitly.all.code.should == "200" }
     end
 
-    describe ".all('shortUrl' => short)" do
+    describe ".all('short' => sh)" do
       before do
-        stub_request(:get, "http://bit.ly/v3?format=json&shortUrl=short").
+        stub_request(:get, "http://bit.ly/v3?format=json&longUrl=ll&short=sh").
           with(:headers => headers("content-type" => "text/html")).
           to_return(:status => 200)
       end
 
-      it { Bitly.all('shortUrl' => 'short').code.should == "200" }
+      it { Bitly.all('short' => 'sh').code.should == "200" }
     end
   end
 

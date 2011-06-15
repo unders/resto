@@ -62,6 +62,11 @@ module Resto
       end
 
       def params(hash)
+        @params ||= {}
+        tap { @params.update(hash) }
+      end
+
+      def params!(hash)
         tap { @params = hash }
       end
 
