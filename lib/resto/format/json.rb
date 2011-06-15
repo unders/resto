@@ -4,13 +4,11 @@ require 'yajl'
 
 module Resto
   module Format
-    # @note This class is only used internally by the classes mentioned below.
-    #
-    # {Resto::Request::Base} (see method {Resto::Request::Header#formatter})
-    # uses this class to create a valid JSON request.
-    #
-    # {Resto::Response::Base} (see method {Resto::Response::Base#read_body})
-    # uses this class to convert a JSON formatted String to a Hash.
+    # @note This class is only used internally by these classes/modules:
+    #  {Resto::Request::Base} (see method {Resto::Request::Header#formatter})
+    #  uses this class to create a valid JSON request. {Resto::Response::Base}
+    #  (see method {Resto::Response::Base#read_body})
+    #  uses this class to convert a JSON formatted String to a Hash.
     class Json; end
 
     class << Json

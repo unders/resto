@@ -1,8 +1,35 @@
 # encoding: utf-8
 
 module Resto
+
+  # @note This class is only used internally.
+  #
+  # AssertHash validates that a Hash only contain valid keys. The purpose
+  # is to assert that methods are used with correct arguments.
   class AssertHash
 
+    # Asserts that keys in the Hash is valid. It also converts
+    # String keys to Symbol keys.
+    #
+    # === Examples:
+    #  hash = { :valid => 'I am valid' }
+    #  AssertHash.keys(hash, :valid)
+    #   # => { :valid => 'I am valid'}
+    #
+    #  hash = { 'valid' => 'I am valid' }
+    #  AssertHash.keys(hash, :valid)
+    #   # => { :valid => 'I am valid'}
+    #
+    #  hash = { :invalid => 'I am invalid' }
+    #  AssertHash.keys(hash, :valid)
+    #   # => raises ArgumentError
+    #
+    # @param hash [Hash]
+    # @param *valid_keys [Symbol, Symbol, ...]
+    #
+    # @return [Hash] string keys are converted to their corresponding Symbols.
+    #
+    # @raise [ArgumentError] if the Hash contains unknown key(s).
     def self.keys(hash, *valid_keys)
       hash ||= {}
 
