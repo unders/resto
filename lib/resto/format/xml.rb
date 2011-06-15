@@ -3,6 +3,7 @@
 # https://tools.ietf.org/html/rfc3023
 require 'resto/format'
 require 'nokogiri'
+require 'resto/extra/assert_hash.rb'
 
 module Resto
   module Format
@@ -22,6 +23,7 @@ module Resto
       def decode(xml, options)
         xpath = options.fetch(:xpath)
       # Converts an XML formatted String to an Array of Hashes.
+        xpath = AssertHash.keys(opts, :xpath).fetch(:xpath)
 
         doc =  Nokogiri::XML(xml)
         nodes =  doc.xpath(xpath)
