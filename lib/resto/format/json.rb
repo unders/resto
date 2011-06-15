@@ -31,20 +31,21 @@ module Resto
       # @return [String] "application/json"
       def content_type; 'application/json'; end
 
-      # Converts a JSON formatted String to a Hash.
+      # Converts a JSON formatted String to an Array of a Hashes.
       #
       # === Example:
       #   Json.decode("{\"root\":{\"body\":\"I am a body\"}}")
-      #     # => { root: { body: 'I am a body' } }
+      #     # => [{ 'root': { 'body': 'I am a body' } }]
       #
       # @param json [String]
       # @param options is not used.
       #
-      # @return [Hash]
+      # @return [Array<Hash>]
       def decode(json, options=nil)
         raise ArgumentError unless json.is_a?(String)
 
-        Yajl::Parser.parse(json)
+        result = Yajl::Parser.parse(json)
+        result.is_a?(Array) ? result : [result].compact
       end
 
       # Converts a Hash to a JSON formatted String.

@@ -21,6 +21,7 @@ module Resto
 
       def decode(xml, options)
         xpath = options.fetch(:xpath)
+      # Converts an XML formatted String to an Array of Hashes.
 
         doc =  Nokogiri::XML(xml)
         nodes =  doc.xpath(xpath)
@@ -28,8 +29,10 @@ module Resto
         case nodes.size
         when 0
           {}
+          [{}]
         when 1
           elements_to_hash(nodes.first.children)
+          [elements_to_hash(nodes.first.children)]
         else
           nodes.map { |node| elements_to_hash(node.children) }
         end

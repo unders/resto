@@ -63,7 +63,9 @@ module Resto
       def to_object
         return self unless @translator
 
-        @translator.call(@klass, read_body).tap do |instance|
+        body = read_body ? read_body.first : nil
+
+        @translator.call(@klass, body).tap do |instance|
           instance.response = self
         end
       end
@@ -71,9 +73,7 @@ module Resto
       def to_collection
         return self unless @translator
 
-        body = read_body.is_a?(Hash) ? [read_body] : read_body
-
-        (body || []).map do |hash|
+        (read_body || []).map do |hash|
           @translator.call(@klass, hash).tap do |instance|
             instance.response = self
           end

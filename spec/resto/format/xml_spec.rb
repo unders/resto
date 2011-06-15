@@ -87,11 +87,11 @@ describe "Resto::Format.get(:xml)" do
 
   describe '.decode(xml, xpath)' do
     context 'when one item' do
-      it { subject.decode(xml, :xpath => '//zone').should == attributes }
+      it { subject.decode(xml, :xpath => '//zone').should == [attributes] }
     end
 
     context 'when 0 items' do
-      it { subject.decode(xml, :xpath => '//xx0').should == {} }
+      it { subject.decode(xml, :xpath => '//xx0').should == [{}] }
     end
 
     context 'when a collection of two items' do

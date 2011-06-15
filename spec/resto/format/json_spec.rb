@@ -12,7 +12,7 @@ describe "Resto::Format.get(:json)" do
 
   describe '.decode(json)' do
     json = Yajl::Encoder.encode( { :foo => 12425125, :bar => "some string" })
-    expected = { 'foo' => 12425125, 'bar' => "some string" }
+    expected =  [{ 'foo' => 12425125, 'bar' => "some string" }]
 
     it { subject.decode(json).should == expected }
   end
