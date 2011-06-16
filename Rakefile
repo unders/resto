@@ -3,8 +3,6 @@ Bundler::GemHelper.install_tasks
 
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 
-require "resto/version"
-
 desc  "open console (require 'resto')"
 task :c do
   system "irb -I lib -r resto"
