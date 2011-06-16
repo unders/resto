@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    resto (0.1.0)
+    resto (0.1.1)
       nokogiri (>= 1.4.4)
       yajl-ruby (>= 0.8.2)
 
@@ -69,6 +69,7 @@ GEM
       i18n
       ruby-progressbar
       ruby_parser
+    rake (0.8.7)
     rcov (0.9.9)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
@@ -110,6 +111,7 @@ DEPENDENCIES
   ephemeral_response
   fuubar (>= 0.0.4)
   metrical
+  rake (= 0.8.7)
   reek
   resto!
   rspec (>= 2.6.0)

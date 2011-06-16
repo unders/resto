@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "metrical"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "ephemeral_response"
+  s.add_development_dependency "rake", "0.8.7"
 
   # CLI testing
   # http://github.com/radar/guides/blob/master/gem-development.md
