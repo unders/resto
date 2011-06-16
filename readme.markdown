@@ -18,6 +18,13 @@ Install as a gem:
 
     gem install resto
 
+### How to test the installed Gem
+
+ 1. gem install rubygems-test
+ 2. gem test resto
+
+For more info see: [GemTesters](http://test.rubygems.org/)
+
 ## Getting Started
 
 ### Working with the [Gists API](http://developer.github.com/v3/gists/)
