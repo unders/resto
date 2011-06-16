@@ -23,3 +23,5 @@ end
 task :default do
   system "bundle exec rspec spec"
 end
+
+task :test => :default
