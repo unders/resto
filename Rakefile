@@ -19,3 +19,7 @@ desc "Runs all the specs."
 task :spec => :clean do
   system "bundle exec rspec spec"
 end
+
+task :default do
+  system "bundle exec rspec spec"
+end
