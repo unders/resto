@@ -36,7 +36,8 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "cucumber"
   # s.add_development_dependency "aruba"
 
-  s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec)
+  s.files = Dir.glob("{lib,spec}/**/*") + %w(resto.gemspec .gemtest Rakefile
+                                             readme.markdown)
   # s.files        = `git ls-files`.split("\n")
   # s.executables  = `git ls-files`.split("\n").map do |f|
   #   f =~ /^bin\/(.*)/ ? $1 : nil
