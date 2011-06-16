@@ -1,6 +1,7 @@
 # Resto
 
 * http://github.com/unders/resto
+* [![Build Status](http://travis-ci.org/unders/resto.png)](http://travis-ci.org/unders/resto)
 
 ## Description:
 
