@@ -2,6 +2,7 @@
 
 * http://github.com/unders/resto
 * [![Build Status](http://travis-ci.org/unders/resto.png)](http://travis-ci.org/unders/resto)
+* [GemTesters](http://test.rubygems.org/gems/resto)
 
 ## Description:
 
@@ -10,7 +11,10 @@ Documentation is available at [rubydoc](http://rubydoc.info/gems/resto)
 
 ## Compatibility
 
-Ruby version 1.9.2 and 1.8.7
+Ruby version 1.9.2 and 1.8.7.
+
+[GemTesters](http://test.rubygems.org/gems/resto) has
+ more information on which platform the Gem is tested.
 
 ## Install
 
