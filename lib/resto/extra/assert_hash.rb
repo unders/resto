@@ -33,7 +33,7 @@ module Resto
     def self.keys(hash, *valid_keys)
       hash ||= {}
 
-      hash.each { |key, value| hash[key.to_sym] = hash.delete(key) }
+      hash = hash.inject({}) { |h, (key, value)| h[key.to_sym] = hash.delete(key); h }
 
       known_keys = [valid_keys].flatten
       unknown_keys = hash.keys - known_keys
