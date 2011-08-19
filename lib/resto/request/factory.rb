@@ -9,17 +9,16 @@ module Resto
     class Factory
       extend Forwardable
 
-      def_delegators :@request, :read_host, :read_port, :options, :read_body,
-                     :composed_path, :composed_headers, :scheme, :use_ssl,
-                     :current_formatter
+      def_delegators :@request_setting, :read_host, :read_port, :options, :read_body,
+                     :composed_path, :composed_headers, :scheme, :use_ssl
 
-      def initialize(request)
-        @request = request
-        @session = Session.new(@request)
+      def initialize(request_setting)
+        @request_setting = request_setting
+        @session = Session.new(@request_setting)
       end
 
       def head
-        @request.method(:head)
+        @request_setting.method(:head)
 
         response = http.start do |http|
           request = Net::HTTP::Head.new(composed_path, composed_headers)
@@ -31,7 +30,7 @@ module Resto
       end
 
       def get
-        @request.method(:get)
+        @request_setting.method(:get)
 
         response = http.start do |http|
           request = Net::HTTP::Get.new(composed_path, composed_headers)
@@ -43,7 +42,7 @@ module Resto
       end
 
       def post
-        @request.method(:post)
+        @request_setting.method(:post)
 
         response = http.start do |http|
           request = Net::HTTP::Post.new(composed_path, composed_headers)
@@ -55,7 +54,7 @@ module Resto
       end
 
       def put
-        @request.method(:put)
+        @request_setting.method(:put)
 
         response = http.start do |http|
           request = Net::HTTP::Put.new(composed_path, composed_headers)
@@ -67,7 +66,7 @@ module Resto
       end
 
       def delete
-        @request.method(:delete)
+        @request_setting.method(:delete)
 
         response = http.start do |http|
           request = Net::HTTP::Delete.new(composed_path, composed_headers)
