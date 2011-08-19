@@ -38,6 +38,14 @@ module Resto
         tap { parse_url(url) }
       end
 
+      def method(symbol=nil)
+        if symbol
+          tap { @method = symbol }
+        else
+          @method
+        end
+      end
+
       def host(host)
         tap { @host = host }
       end

@@ -48,11 +48,11 @@ describe Resto::Copy do
     before do
       @response_base = Resto::Response::Base.new.format(:json)
       @new_response_base = Resto::Copy.response_base(@response_base).
-        http_response('response')
+        http_session('session')
     end
 
     it { @response_base.instance_eval { @response }.should == nil }
     it { @new_response_base.object_id.should_not  == @response_base.object_id }
-    it { @new_response_base.instance_eval { @response }.should == 'response' }
+    it { @new_response_base.instance_eval { @session }.should == 'session' }
   end
 end

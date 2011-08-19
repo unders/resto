@@ -38,8 +38,8 @@ module Resto
         @formatter ||= Resto::Format.get(@symbol || :default)
       end
 
-      def http_response(response)
-        tap { @response = response }
+      def http_session(session)
+        tap { @session = session }
       end
 
       def read_body
@@ -47,18 +47,18 @@ module Resto
       end
 
       def body
-        @response ? @response.body : nil
+        @session.body
       end
 
       def code
-        @response ? @response.code : nil
+        @session.code
       end
 
       def valid?
-        (/\A20\d{1}\z/ =~ code.to_s) == 0
+        @session.valid?
       end
 
-      attr_reader :response
+      attr_reader :session
 
       def to_object
         return self unless @translator

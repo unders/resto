@@ -183,8 +183,8 @@ module Resto
       Copy.request_base(@request)
     end
 
-    def response(response)
-      base_response.http_response(response)
+    def response(session)
+      base_response.http_session(session)
     end
 
     def base_response

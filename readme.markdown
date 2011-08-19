@@ -1,4 +1,4 @@
-# Resto
+# Resto [![Stillmaintained](http://stillmaintained.com/unders/resto.png)](http://stillmaintained.com/unders/resto)
 
 * http://github.com/unders/resto
 * [![Build Status](http://travis-ci.org/unders/resto.png)](http://travis-ci.org/unders/resto)
