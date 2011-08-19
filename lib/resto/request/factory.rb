@@ -9,8 +9,9 @@ module Resto
     class Factory
       extend Forwardable
 
-      def_delegators :@request_setting, :read_host, :read_port, :options, :read_body,
-                     :composed_path, :composed_headers, :scheme, :use_ssl
+      def_delegators :@request_setting, :read_host, :read_port, :options,
+                     :read_body, :composed_path, :composed_headers, :scheme,
+                     :use_ssl
 
       def initialize(request_setting)
         @request_setting = request_setting
