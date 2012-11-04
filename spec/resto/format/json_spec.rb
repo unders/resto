@@ -1,16 +1,16 @@
 describe Resto::Format::Json do
   subject(:formatter) { Resto::Format::Json }
 
-  specify { formatter.accept.should == 'application/json, */*' }
-  specify { formatter.content_type.should == 'application/json' }
-  specify { formatter.extension.should == 'json' }
+  its(:accept) { should == 'application/json, */*' }
+  its(:content_type) { should == 'application/json' }
+  its(:extension) { should == 'json' }
 
   describe ".decode(json)" do
     json = "{\"foo\":12425125,\"bar\":\"some string\"}"
 
     hash =  { 'foo' => 12425125, 'bar' => "some string" }
 
-    it "decodes a json string into a hash" do
+    it "returns a hash - decoded from the json string" do
       formatter.decode(json).should == [hash]
     end
   end
@@ -20,7 +20,7 @@ describe Resto::Format::Json do
 
     json = "{\"foo\":12425125,\"bar\":\"some string\"}"
 
-    it "encodes a hash into a json string" do
+    it "returns a json string - encoded from the hash" do
       formatter.encode(hash).should == json
     end
   end

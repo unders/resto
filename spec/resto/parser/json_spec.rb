@@ -8,7 +8,7 @@ describe Resto::Parser::Json do
 
     hash =  { 'foo' => 12425125, 'bar' => "some string" }
 
-    it "decodes a json string into a hash" do
+    it "returns a hash - decoded from the json string" do
       parser.decode(json).should == hash
     end 
   end
@@ -18,7 +18,7 @@ describe Resto::Parser::Json do
 
     json = "{\"foo\":12425125,\"bar\":\"some string\"}"
 
-    it "encodes a hash into a json string" do
+    it "returns a json string - encoded from the hash" do
       parser.encode(hash).should == json
     end
   end
