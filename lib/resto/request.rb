@@ -17,19 +17,20 @@ class Resto::Request
   private
 
   def read_settings
-    @headers     = @settings.read_headers
     @response    = @settings.read_response
-    @body        = nil #@settings.read_body
+    @headers     = @settings.read_headers
+    @body        = @settings.read_body
     uri          = @settings.read_uri
     @request_uri = uri.request_uri
     @host        = uri.host
     @port        = uri.port
+    @http        = setup_http
   end
 
   def new_session(verb)
     read_settings
     request = Net::HTTP.const_get(verb).new(@request_uri, @headers)
-    @session = @session_class.new http: setup_http,
+    @session = @session_class.new http: @http,
                                   request: request,
                                   response: @response,
                                   request_body: @body
@@ -48,11 +49,11 @@ class Resto::Request
 
       #@settings.use_ssl if @uri.scheme == "https"
 
-     # unless @sessions.options.keys.empty?
+     # unless @settings.options.keys.empty?
      #   http.methods.grep /\A(\w+)=\z/ do |name|
      #     key = $1.to_sym
      #     @sessions.options.key?(key) or next
-     #     http.__send__ name, options[key]
+     #     http.__send__ name, @settings.options[key]
      #   end
      # end
     end

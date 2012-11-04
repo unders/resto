@@ -1,6 +1,19 @@
 require 'hamster'
+#require 'resto/extra/valid_keys'
+require 'resto/format'
 
 module Resto::Request::Header
+  def format(symbol, options={})
+    formatter(Resto::Format.const_get(symbol.capitalize), options)
+  end
+
+  def formatter(formatter, options={})
+    #ValidKeys.new(:extension).validate(options)
+    @formatter = formatter
+    accept(@formatter.accept)
+    content_type(@formatter.content_type)
+  end
+
   def read_headers
     @headers
   end

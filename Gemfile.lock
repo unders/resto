@@ -23,6 +23,7 @@ GEM
       backports (~> 2.6.1)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES

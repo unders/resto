@@ -1,3 +1,5 @@
+require "uri"
+
 module Resto::Request::Uri
   def read_uri
     URI(@uri.to_s)
@@ -11,8 +13,24 @@ module Resto::Request::Uri
     tap { @uri = URI(uri) }
   end
 
+  def host(host)
+    tap { @uri.host = host }
+  end
+
+  def port(port)
+    tap { @uri.port = port }
+  end
+
+  def path(path)
+    tap { @uri.path = path }
+  end
+
   def query(query)
     tap { @uri.query = query }
+  end
+
+  def fragment(framgment)
+    tap { @uri.fragment = fragment }
   end
 
   def params(params)

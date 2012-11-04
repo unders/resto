@@ -1,4 +1,5 @@
 require "resto/request"
+require "resto/format"
 require "resto/request/header"
 require "resto/request/uri"
 
@@ -11,7 +12,9 @@ class Resto::Request::Settings
 
   def initialize(request = Resto::Request)
     @headers = Hamster.hash('accept'=> '*/*' , 'user-agent'=> 'Ruby')
+    @formatter = Resto::Format.const_get(:Default)
     @uri = nil
+    @body = nil
     @request = request.new(self)
     @response = nil
   end
@@ -22,5 +25,15 @@ class Resto::Request::Settings
 
   def response(response)
     tap { @response = response }
+  end
+
+  def read_body
+    if @body
+      @formatter.encode(body)
+    end
+  end
+
+  def body(body)
+    tap { @body = body }
   end
 end
