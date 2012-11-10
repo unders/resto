@@ -26,7 +26,8 @@ TODO: Write usage instructions here
 * http://ruby-doc.org/stdlib-1.9.2/libdoc/rexml/rdoc/REXML/Document.html
 * http://www.germane-software.com/software/rexml/
 * http://www.germane-software.com/software/rexml/docs/tutorial.html
-*
+* https://github.com/guyboertje/jrjackson - JSON parser in JRuby
+* https://github.com/brianmario/yajl-ruby - JSON parser in MRI Ruby
 
 ## Contributing
 

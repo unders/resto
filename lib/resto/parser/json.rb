@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'json' # 2. e.g. require 'yajl'
+require 'json/pure' # 2. e.g. require 'yajl'
 
 # This file is not required when Resto is required.
 #
