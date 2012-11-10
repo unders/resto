@@ -9,3 +9,4 @@ example/key_setup.rb
 example/fixtures/
 .yardoc/
 doc/
+Gemfile.lock
