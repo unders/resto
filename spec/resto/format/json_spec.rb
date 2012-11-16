@@ -6,25 +6,43 @@ describe Resto::Format::Json do
   its(:extension) { should == 'json' }
 
   describe ".decode(json)" do
-    json = "{\"foo\":12425125,\"bar\":\"some string\"}"
+    before { Resto.json_decode = ->(json) { json } }
 
-    hash =  { 'foo' => 12425125, 'bar' => "some string" }
+    it "delegates to Resto.json_decode[json] to handle the decoding" do
+      formatter.decode("decoded").should == ["decoded"]
+    end
 
-    it "returns a hash - decoded from the json string" do
-      formatter.decode(json).should == [hash]
+    it "returns an array containing the decoded json string" do
+      formatter.decode("json").should == ["json"]
+    end
+
+    it "returns an array containing an empty hash when passed nil value" do
+      formatter.decode(nil).should == [{}]
+    end
+
+    it "returns an array containing an empty hash when passed '' value" do
+      formatter.decode('').should == [{}]
+    end
+
+    it "returns an array containing an empty hash when passed '   ' value" do
+      formatter.decode('    ').should == [{}]
     end
   end
 
   describe ".encode(hash)" do
-    hash  =  { 'foo' => 12425125, 'bar' => "some string" }
+    before { Resto.json_encode = ->(hash) { hash } }
 
-    json = "{\"foo\":12425125,\"bar\":\"some string\"}"
+    it "raises NoMethodError unless argument respond to .to_hash" do
+      expect { formatter.encode("string") }.to raise_error(NoMethodError)
+    end
 
-    it "returns a json string - encoded from the hash" do
-      formatter.encode(hash).should == json
+    it "delegates to Resto.json_encode[hash] to handle the encoding" do
+      formatter.encode({ key: "encoded" }).should == { key: "encoded" }
+    end
+
+    it "returns the return value from Resto.json_encode[hash]" do
+      formatter.encode({ key: "encoded" }).should == { key: "encoded" }
     end
   end
 end
     
-
-   
