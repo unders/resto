@@ -2,6 +2,7 @@ require 'resto/format/default'
 require 'resto/format/plain'
 require 'resto/format/www_form'
 require 'resto/format/json'
+require 'resto/format/xml'
 
 module Resto
   module Format
