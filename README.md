@@ -54,7 +54,7 @@ end
 ## References
 * http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html
 * http://www.ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/URI.html
-* http://ruby-doc.org/stdlib-1.9.2/libdoc/rexml/rdoc/REXML/Document.html
+* http://ruby-doc.org/stdlib-1.9.3/libdoc/rexml/rdoc/REXML/Document.html
 * http://www.germane-software.com/software/rexml/
 * http://www.germane-software.com/software/rexml/docs/tutorial.html
 * https://github.com/guyboertje/jrjackson - JSON parser in JRuby
