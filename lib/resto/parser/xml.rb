@@ -33,11 +33,12 @@ module Resto
       class Encode < Struct.new(:hash, :doc)
         def to_xml
           hash.each do |key, value|
-            if value.is_a?(Hash)
+            case value
+            when Hash
               element = REXML::Element.new(key.to_s)
               doc.add_element(element)
               Encode.new(value, element).to_xml
-            elsif value.is_a?(Array)
+            when Array
               value.each { |hash| Encode.new({ key => hash }, doc).to_xml }
             else
               element = REXML::Element.new(key.to_s).add_text(value.to_s)
