@@ -12,6 +12,8 @@ module Resto
       end
 
       def encode(hash)
+        return "" unless hash
+        return "" if hash.empty?
         xml = Encode.new(hash, REXML::Document.new).to_xml
         %Q[<?xml version="1.0" encoding="UTF-8"?>#{xml}]
       end
@@ -35,6 +37,8 @@ module Resto
               element = REXML::Element.new(key.to_s)
               doc.add_element(element)
               Encode.new(value, element).to_xml
+            elsif value.is_a?(Array)
+              value.each { |hash| Encode.new({ key => hash }, doc).to_xml }
             else
               element = REXML::Element.new(key.to_s).add_text(value.to_s)
               doc.add_element(element)

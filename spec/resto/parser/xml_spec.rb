@@ -68,24 +68,77 @@ describe Resto::Parser::Xml do
   end
 
   describe ".encode(hash)" do
-    hash = { 
-      :zone => {
-        'ns1' => nil,
-        'ns-type' => "pri_sec",
-        'nx-ttl' => 900,
+    context "when hash is nil" do
+      it "returns an empty string" do
+        parser.encode(nil).should == ""
+      end
+    end
+
+    context "when hash is empty" do
+      it "returns an empty string" do
+        parser.encode({}).should == ""
+      end
+    end
+
+    context "when the hash doesn't have a root element" do
+      hash = { 'ns1' => nil, 'nx-ttl' => 900}
+
+      it "raises RuntimeError" do
+        expect { parser.encode(hash) }.to raise_error(RuntimeError)
+      end
+    end
+
+    context "when a two level hash" do
+      hash = {
+        :zone => {
+          'ns1' => nil,
+          'ns-type' => "pri_sec",
+          'nx-ttl' => 900,
+          }
         }
-      }
 
-    xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
-    xml = 
-      '<zone>
-        <ns1></ns1>
-        <ns-type>pri_sec</ns-type>
-        <nx-ttl>900</nx-ttl>
-      </zone>'.gsub("\n", "").gsub(/\s+/, "")
+      xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
+      xml =
+        '<zone>
+          <ns1></ns1>
+          <ns-type>pri_sec</ns-type>
+          <nx-ttl>900</nx-ttl>
+        </zone>'.gsub("\n", "").gsub(/\s+/, "")
 
-    it "returns an xml encoded string" do
-      parser.encode(hash).should == xml_header + xml
+      it "returns an xml encoded string" do
+        parser.encode(hash).should == xml_header + xml
+      end
+    end
+
+    context "when containing a array of items" do
+      hash = {
+        :zones => {
+          :zone => [
+            { 'ns1' => nil,
+              'ns-type' => "pri_sec",
+              'nx-ttl' => 900 },
+            { 'ns1' => "network",
+              'ns-type' => "pri_dec",
+              'nx-ttl' => 901 } ] } }
+
+      xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
+      xml =
+        '<zones>
+          <zone>
+            <ns1></ns1>
+            <ns-type>pri_sec</ns-type>
+            <nx-ttl>900</nx-ttl>
+          </zone>
+          <zone>
+            <ns1>network</ns1>
+            <ns-type>pri_dec</ns-type>
+            <nx-ttl>901</nx-ttl>
+          </zone>
+      </zones>'.gsub("\n", "").gsub(/\s+/, "")
+
+      it "returns an xml encoded string" do
+        parser.encode(hash).should == xml_header + xml
+      end
     end
   end
 end
