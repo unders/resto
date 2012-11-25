@@ -7,9 +7,9 @@ describe Resto::Parser::Xml do
     context "when xml is nil or an empty string" do
 
       it "returns an array with one empty hash" do
-        parser.decode(nil, '//xzone').should == [{}]  
-        parser.decode("", '//xzone').should == [{}]  
-        parser.decode("    ", '//xzone').should == [{}]  
+        parser.decode(nil, '//zone').should == [{}]
+        parser.decode("", '//zone').should == [{}]
+        parser.decode("    ", '//zone').should == [{}]
       end
     end
 
@@ -81,7 +81,7 @@ describe Resto::Parser::Xml do
     end
 
     context "when the hash doesn't have a root element" do
-      hash = { 'ns1' => nil, 'nx-ttl' => 900}
+      hash = { 'ns1' => nil, 'nx-ttl' => 900 }
 
       it "raises RuntimeError" do
         expect { parser.encode(hash) }.to raise_error(RuntimeError)
@@ -110,7 +110,7 @@ describe Resto::Parser::Xml do
       end
     end
 
-    context "when containing a array of items" do
+    context "when a hash containing a array of items" do
       hash = {
         :zones => {
           :zone => [
