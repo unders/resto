@@ -24,5 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake"
   if RUBY_PLATFORM == "java"
     gem.add_development_dependency "jrjackson"
+  else
+    gem.add_development_dependency "yajl-ruby"
   end
 end

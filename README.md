@@ -18,17 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
-### JSON
-
-### Ruby or Rubinius
-Require the json lib from stdlib.
+### Parse JSON
+You must require the json lib from stdlib.
 
 ```ruby
 require 'json'
 require 'resto'
 ```
 
-or if you want a faster parser, e.g. YAJL. Do the following:
+#### Faster CRuby or Rubinius JSON parsing
+You can use another JSON gem if you want a faster JSON parser. This is how
+you use the yajl gem with Resto.
+
 ```ruby
 require 'yajl'
 require 'resto'
@@ -38,8 +39,9 @@ Resto.configure do |config|
   config.json_encode = ->(hash) { Yajl::Encoder.encode(hash) }
 end
 ```
-#### JRuby
-If you use JRuby and want to parse JSON.
+
+#### Faster JRuby JSON parsing
+If you use JRuby and want to parse JSON faster you can use the jrjackson gem.
 
 ```ruby
 require 'jrjackson_r' # A JRuby library wrapping the JAVA jackson jars.
