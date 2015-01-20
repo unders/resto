@@ -42,7 +42,7 @@ and the output will look like [this](https://github.com/unders/resto/raw/master/
 
 ## Examples
 
-To run all [examples](https://github.com/unders/resto/tree/master/example), rename:
+To run all [examples](/example), rename:
 [key_setup.rb.your_keys](https://github.com/unders/resto/tree/master/example/key_setup.rb.your_keys)
 to key_setup.rb and add your API keys.
 
